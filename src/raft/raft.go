@@ -60,6 +60,7 @@ type Raft struct {
 	// Your data here (PartA, PartB, PartC).
 	// Look at the paper's Figure 2 for a description of what
 	// state a Raft server must maintain.
+	curTerm int32 // the term of current peer
 
 }
 
@@ -124,12 +125,18 @@ func (rf *Raft) Snapshot(index int, snapshot []byte) {
 // field names must start with capital letters!
 type RequestVoteArgs struct {
 	// Your data here (PartA, PartB).
+	Term         int32 //candidate term
+	CandidateId  int32 //which candidate requesting vote
+	LastLogIndex int32 //last index of candidate's last log entry
+	LastLogTerm  int32 //term of candidate's last log entry
 }
 
 // example RequestVote RPC reply structure.
 // field names must start with capital letters!
 type RequestVoteReply struct {
 	// Your data here (PartA).
+	Term       int32 //current term, for candidate update itself
+	VotGranted bool  // true means candidate received vote
 }
 
 // example RequestVote RPC handler.
@@ -215,12 +222,27 @@ func (rf *Raft) ticker() {
 
 		// Your code here (PartA)
 		// Check if a leader election should be started.
-
+		add
 		// pause for a random amount of time between 50 and 350
 		// milliseconds.
 		ms := 50 + (rand.Int63() % 300)
 		time.Sleep(time.Duration(ms) * time.Millisecond)
 	}
+}
+
+// 超时检测
+func (rf *Raft) checkTime(task chan bool) {
+	for {
+		//如果没收到信息就一直等待
+		ms := 100 + (rand.Int63() % 300)
+		time.Sleep(time.Duration(ms) * time.Millisecond)
+		if  need a AppendEntries{
+			//可以开始选举了告诉follower
+			task <- true
+			break
+		}
+	}
+
 }
 
 // the service or tester wants to create a Raft server. the ports
@@ -240,12 +262,20 @@ func Make(peers []*labrpc.ClientEnd, me int,
 	rf.me = me
 
 	// Your initialization code here (PartA, PartB, PartC).
+	checktask := make(chan bool)
+
 
 	// initialize from state persisted before a crash
 	rf.readPersist(persister.ReadRaftState())
+	//超时检测
+	go rf.checkTime(checktask)
+	//发起选举
+	select {
+	case <-checktask:
+		// start ticker goroutine to start elections
+		go rf.ticker()
+	}
 
-	// start ticker goroutine to start elections
-	go rf.ticker()
 
 	return rf
 }
