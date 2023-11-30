@@ -18,6 +18,7 @@ package raft
 //
 
 import (
+	"math"
 	//	"bytes"
 	"math/rand"
 	"sync"
@@ -48,6 +49,12 @@ type ApplyMsg struct {
 	SnapshotTerm  int
 	SnapshotIndex int
 }
+type Role string
+const (
+	Follower Role = "Follower"
+	Candidate Role = "Candidate"
+	Leader Role = "Leader"
+)
 
 // A Go object implementing a single Raft peer.
 type Raft struct {
@@ -60,9 +67,61 @@ type Raft struct {
 	// Your data here (PartA, PartB, PartC).
 	// Look at the paper's Figure 2 for a description of what
 	// state a Raft server must maintain.
-	curTerm int32 // the term of current peer
+	currentTerm int // the term of current peer
+	voteFor int // vote for which peer, -1 means vote for none
+	role Role
+
+
+	receiverNum int32 //获得的票数
+	numServer int32 // the number of server
 
 }
+
+//to the Follower status
+func(rf *Raft) becomeFollowerLocked(term int){
+	if term < rf.currentTerm {
+		//ignore this message
+		LOG(rf.me, rf.currentTerm, DError, "Can't become Follower, lower term")
+		return
+	}
+	//term > or ==
+	LOG(rf.me, rf.currentTerm, DLog, "%s -> Follower, For T %d -> %d",
+		rf.role, rf.currentTerm, term)
+	if term > rf.currentTerm {
+		rf.voteFor = -1
+	}
+	rf.role = Follower
+	// update to large term, which means current peer has invloved in current leader's selection
+	rf.currentTerm = term
+}
+
+// to the Candidate Stauts
+func (rf *Raft) becomeCandidateLocked()  {
+	if rf.role == Leader{
+		//can't from leader to candidate
+		LOG(rf.me, rf.currentTerm, DError, "Leader can't be candidate")
+		return
+	}
+	LOG(rf.me, rf.currentTerm, DVote, "%s -> candidate, for T %d to T %d",
+		rf.role, rf.currentTerm, rf.currentTerm+1)
+	rf.role = Candidate
+	rf.voteFor = rf.me
+	rf.currentTerm++
+}
+
+//to be the Leader
+func (rf *Raft) becomeLeaderLocked()  {
+	if rf.role != Candidate {
+		//only the candidate can be leader
+		LOG(rf.me, rf.currentTerm, DLeader,
+			"%s, Only candidate can become Leader", rf.role)
+		return
+	}
+	LOG(rf.me, rf.currentTerm, DLeader, "%s -> Leader, For T%d",
+		rf.role, rf.currentTerm)
+	rf.role = Leader
+}
+
 
 // return currentTerm and whether this server
 // believes it is the leader.
@@ -222,7 +281,29 @@ func (rf *Raft) ticker() {
 
 		// Your code here (PartA)
 		// Check if a leader election should be started.
-		add
+		rf.mu.Lock()
+		rf.curTerm ++
+		rf.mu.Unlock()
+		for  index, server := range rf.peers{
+			if index == rf.me{
+				//给自己投票，并继续请求其他的
+				rf.receiverNum++
+				continue
+			}
+			result := rf.sendRequestVote(index, RequestVoteArgs{}, RequestVoteReply{})
+			if result{
+				rf.receiverNum++
+			}
+		}
+		//检查自己是否获得了半数以上的投票
+		success := math.Ceil(rf.numServer / 2)
+		if success < rf.receiverNum {
+			//变成leader
+		}else{
+			//nothing
+		}
+		//成功，则变成leader, 否则继续请求投票，除非收到更高term
+
 		// pause for a random amount of time between 50 and 350
 		// milliseconds.
 		ms := 50 + (rand.Int63() % 300)
@@ -262,8 +343,11 @@ func Make(peers []*labrpc.ClientEnd, me int,
 	rf.me = me
 
 	// Your initialization code here (PartA, PartB, PartC).
-	checktask := make(chan bool)
+	rf.currentTerm = 0
+	rf.voteFor = -1
+	rf.role = Follower
 
+	checktask := make(chan bool)
 
 	// initialize from state persisted before a crash
 	rf.readPersist(persister.ReadRaftState())
