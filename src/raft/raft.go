@@ -104,6 +104,7 @@ func (rf *Raft) becomeFollowerLocked(term int) {
 	//term > or ==
 	LOG(rf.me, rf.currentTerm, DLog, "%s -> Follower, For T %d -> %d",
 		rf.role, rf.currentTerm, term)
+	// important! Could only reset the `votedFor` when term increased
 	if term > rf.currentTerm {
 		rf.voteFor = -1
 	}
@@ -142,11 +143,10 @@ func (rf *Raft) becomeLeaderLocked() {
 // return currentTerm and whether this server
 // believes it is the leader.
 func (rf *Raft) GetState() (int, bool) {
-
-	var term int
-	var isleader bool
 	// Your code here (PartA).
-	return term, isleader
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
+	return rf.currentTerm, rf.role == Leader
 }
 
 // save Raft's persistent state to stable storage,
