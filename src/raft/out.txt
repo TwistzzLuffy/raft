@@ -1,0 +1,160 @@
+explore go -sch000004 T0000 VOTE S0 Follower -> candidate, for T 0 to T 1
+Test (PartA): initial election ...
+000005 T0000 DBUG S0 try to become leader
+000005 T0000 VOTE S1 Follower -> candidate, for T 0 to T 1
+000006 T0000 DBUG S1 try to become leader
+000005 T0000 VOTE S2 Follower -> candidate, for T 0 to T 1
+000006 T0000 DBUG S2 try to become leader
+000909 T0001 VOTE S1 Candidate -> candidate, for T 1 to T 2
+000909 T0001 DBUG S1 try to become leader
+002014 T0001 VOTE S2 Candidate -> candidate, for T 1 to T 2
+002015 T0001 DBUG S2 try to become leader
+003130 T0001 VOTE S0 Candidate -> candidate, for T 1 to T 2
+003131 T0001 DBUG S0 try to become leader
+004061 T0002 VOTE S1 Candidate -> candidate, for T 2 to T 3
+004062 T0002 DBUG S1 try to become leader
+004370 T0002 VOTE S2 Candidate -> candidate, for T 2 to T 3
+004370 T0002 DBUG S2 try to become leader
+004684 T0003 VOTE S1 Candidate -> candidate, for T 3 to T 4
+004684 T0003 DBUG S1 try to become leader
+005823 T0002 VOTE S0 Candidate -> candidate, for T 2 to T 3
+005824 T0002 DBUG S0 try to become leader
+005856 T0003 VOTE S2 Candidate -> candidate, for T 3 to T 4
+005857 T0003 DBUG S2 try to become leader
+006579 T0004 VOTE S1 Candidate -> candidate, for T 4 to T 5
+006580 T0004 DBUG S1 try to become leader
+008348 T0003 VOTE S0 Candidate -> candidate, for T 3 to T 4
+008349 T0003 DBUG S0 try to become leader
+008419 T0004 VOTE S2 Candidate -> candidate, for T 4 to T 5
+008420 T0004 DBUG S2 try to become leader
+009029 T0005 VOTE S1 Candidate -> candidate, for T 5 to T 6
+009030 T0005 DBUG S1 try to become leader
+010496 T0006 VOTE S1 Candidate -> candidate, for T 6 to T 7
+010496 T0006 DBUG S1 try to become leader
+010546 T0004 VOTE S0 Candidate -> candidate, for T 4 to T 5
+010546 T0004 DBUG S0 try to become leader
+010889 T0005 VOTE S2 Candidate -> candidate, for T 5 to T 6
+010890 T0005 DBUG S2 try to become leader
+013852 T0006 VOTE S2 Candidate -> candidate, for T 6 to T 7
+013852 T0006 DBUG S2 try to become leader
+013918 T0005 VOTE S0 Candidate -> candidate, for T 5 to T 6
+013918 T0005 DBUG S0 try to become leader
+013985 T0007 VOTE S1 Candidate -> candidate, for T 7 to T 8
+013986 T0007 DBUG S1 try to become leader
+014820 T0006 VOTE S0 Candidate -> candidate, for T 6 to T 7
+014821 T0006 DBUG S0 try to become leader
+015753 T0007 VOTE S0 Candidate -> candidate, for T 7 to T 8
+015754 T0007 DBUG S0 try to become leader
+016806 T0007 VOTE S2 Candidate -> candidate, for T 7 to T 8
+016806 T0007 DBUG S2 try to become leader
+016916 T0008 VOTE S1 Candidate -> candidate, for T 8 to T 9
+016916 T0008 DBUG S1 try to become leader
+017079 T0008 VOTE S0 Candidate -> candidate, for T 8 to T 9
+017080 T0008 DBUG S0 try to become leader
+018079 T0009 VOTE S1 Candidate -> candidate, for T 9 to T 10
+018079 T0009 DBUG S1 try to become leader
+019442 T0008 VOTE S2 Candidate -> candidate, for T 8 to T 9
+019443 T0008 DBUG S2 try to become leader
+020055 T0009 VOTE S0 Candidate -> candidate, for T 9 to T 10
+020055 T0009 DBUG S0 try to become leader
+020803 T0010 VOTE S1 Candidate -> candidate, for T 10 to T 11
+020803 T0010 DBUG S1 try to become leader
+021364 T0009 VOTE S2 Candidate -> candidate, for T 9 to T 10
+021365 T0009 DBUG S2 try to become leader
+021790 T0010 VOTE S0 Candidate -> candidate, for T 10 to T 11
+021790 T0010 DBUG S0 try to become leader
+022241 T0010 VOTE S2 Candidate -> candidate, for T 10 to T 11
+022242 T0010 DBUG S2 try to become leader
+023350 T0011 VOTE S1 Candidate -> candidate, for T 11 to T 12
+023350 T0011 DBUG S1 try to become leader
+024264 T0011 VOTE S2 Candidate -> candidate, for T 11 to T 12
+024264 T0011 DBUG S2 try to become leader
+024477 T0011 VOTE S0 Candidate -> candidate, for T 11 to T 12
+024478 T0011 DBUG S0 try to become leader
+024707 T0012 VOTE S1 Candidate -> candidate, for T 12 to T 13
+024708 T0012 DBUG S1 try to become leader
+025693 T0012 VOTE S2 Candidate -> candidate, for T 12 to T 13
+025694 T0012 DBUG S2 try to become leader
+026850 T0013 VOTE S1 Candidate -> candidate, for T 13 to T 14
+026851 T0013 DBUG S1 try to become leader
+027270 T0012 VOTE S0 Candidate -> candidate, for T 12 to T 13
+027271 T0012 DBUG S0 try to become leader
+028257 T0013 VOTE S2 Candidate -> candidate, for T 13 to T 14
+028257 T0013 DBUG S2 try to become leader
+029384 T0013 VOTE S0 Candidate -> candidate, for T 13 to T 14
+029385 T0013 DBUG S0 try to become leader
+030012 T0014 VOTE S2 Candidate -> candidate, for T 14 to T 15
+030014 T0014 DBUG S2 try to become leader
+030036 T0014 VOTE S1 Candidate -> candidate, for T 14 to T 15
+030036 T0014 DBUG S1 try to become leader
+031648 T0014 VOTE S0 Candidate -> candidate, for T 14 to T 15
+031648 T0014 DBUG S0 try to become leader
+032210 T0015 VOTE S2 Candidate -> candidate, for T 15 to T 16
+032211 T0015 DBUG S2 try to become leader
+033374 T0016 VOTE S2 Candidate -> candidate, for T 16 to T 17
+033375 T0016 DBUG S2 try to become leader
+033508 T0015 VOTE S1 Candidate -> candidate, for T 15 to T 16
+033509 T0015 DBUG S1 try to become leader
+034085 T0017 VOTE S2 Candidate -> candidate, for T 17 to T 18
+034086 T0017 DBUG S2 try to become leader
+034091 T0015 VOTE S0 Candidate -> candidate, for T 15 to T 16
+034092 T0015 DBUG S0 try to become leader
+034530 T0016 VOTE S1 Candidate -> candidate, for T 16 to T 17
+034530 T0016 DBUG S1 try to become leader
+035847 T0017 VOTE S1 Candidate -> candidate, for T 17 to T 18
+035848 T0017 DBUG S1 try to become leader
+036375 T0018 VOTE S2 Candidate -> candidate, for T 18 to T 19
+036376 T0018 DBUG S2 try to become leader
+036500 T0018 VOTE S1 Candidate -> candidate, for T 18 to T 19
+036501 T0018 DBUG S1 try to become leader
+037112 T0019 VOTE S1 Candidate -> candidate, for T 19 to T 20
+037113 T0019 DBUG S1 try to become leader
+037523 T0016 VOTE S0 Candidate -> candidate, for T 16 to T 17
+037523 T0016 DBUG S0 try to become leader
+039319 T0019 VOTE S2 Candidate -> candidate, for T 19 to T 20
+039320 T0019 DBUG S2 try to become leader
+040517 T0020 VOTE S1 Candidate -> candidate, for T 20 to T 21
+040518 T0020 DBUG S1 try to become leader
+040823 T0017 VOTE S0 Candidate -> candidate, for T 17 to T 18
+040823 T0017 DBUG S0 try to become leader
+041354 T0018 VOTE S0 Candidate -> candidate, for T 18 to T 19
+041355 T0018 DBUG S0 try to become leader
+042325 T0020 VOTE S2 Candidate -> candidate, for T 20 to T 21
+042325 T0020 DBUG S2 try to become leader
+042780 T0019 VOTE S0 Candidate -> candidate, for T 19 to T 20
+042781 T0019 DBUG S0 try to become leader
+043523 T0021 VOTE S1 Candidate -> candidate, for T 21 to T 22
+043523 T0021 DBUG S1 try to become leader
+044143 T0020 VOTE S0 Candidate -> candidate, for T 20 to T 21
+044143 T0020 DBUG S0 try to become leader
+044449 T0022 VOTE S1 Candidate -> candidate, for T 22 to T 23
+044450 T0022 DBUG S1 try to become leader
+044505 T0021 VOTE S2 Candidate -> candidate, for T 21 to T 22
+044506 T0021 DBUG S2 try to become leader
+045166 T0021 VOTE S0 Candidate -> candidate, for T 21 to T 22
+045167 T0021 DBUG S0 try to become leader
+045745 T0022 VOTE S2 Candidate -> candidate, for T 22 to T 23
+045746 T0022 DBUG S2 try to become leader
+046782 T0023 VOTE S1 Candidate -> candidate, for T 23 to T 24
+046782 T0023 DBUG S1 try to become leader
+047339 T0024 VOTE S1 Candidate -> candidate, for T 24 to T 25
+047340 T0024 DBUG S1 try to become leader
+048470 T0022 VOTE S0 Candidate -> candidate, for T 22 to T 23
+048470 T0022 DBUG S0 try to become leader
+048502 T0023 VOTE S2 Candidate -> candidate, for T 23 to T 24
+048504 T0023 DBUG S2 try to become leader
+049354 T0025 VOTE S1 Candidate -> candidate, for T 25 to T 26
+049355 T0025 DBUG S1 try to become leader
+050076 T0024 VOTE S2 Candidate -> candidate, for T 24 to T 25
+050077 T0024 DBUG S2 try to become leader
+050539 T0023 VOTE S0 Candidate -> candidate, for T 23 to T 24
+050540 T0023 DBUG S0 try to become leader
+050749 T0025 VOTE S2 Candidate -> candidate, for T 25 to T 26
+050749 T0025 DBUG S2 try to become leader
+050837 T0026 VOTE S1 Candidate -> candidate, for T 26 to T 27
+050837 T0026 DBUG S1 try to become leader
+--- FAIL: TestInitialElectionPartA (5.11s)
+    config.go:457: expected one leader, got none
+FAIL
+exit status 1
+FAIL	course/raft	5.118s

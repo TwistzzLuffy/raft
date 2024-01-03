@@ -105,10 +105,10 @@ func (rf *Raft) becomeFollowerLocked(term int) {
 	LOG(rf.me, rf.currentTerm, DLog, "%s -> Follower, For T %d -> %d",
 		rf.role, rf.currentTerm, term)
 	// important! Could only reset the `votedFor` when term increased
+	rf.role = Follower
 	if term > rf.currentTerm {
 		rf.voteFor = -1
 	}
-	rf.role = Follower
 	// update to large term, which means current peer has invloved in current leader's selection
 	rf.currentTerm = term
 }
@@ -122,9 +122,10 @@ func (rf *Raft) becomeCandidateLocked() {
 	}
 	LOG(rf.me, rf.currentTerm, DVote, "%s -> candidate, for T %d to T %d",
 		rf.role, rf.currentTerm, rf.currentTerm+1)
+	rf.currentTerm++
 	rf.role = Candidate
 	rf.voteFor = rf.me
-	rf.currentTerm++
+
 }
 
 // to be the Leader
@@ -353,6 +354,8 @@ func (rf *Raft) startElection(term int) bool {
 		reply := &RequestVoteReply{}
 		ok := rf.sendRequestVote(peer, arg, reply)
 
+		rf.mu.Lock()
+		defer rf.mu.Unlock()
 		if !ok {
 			//send fault
 			LOG(rf.me, rf.currentTerm, DDebug, "Ask vote from %d, Lost or error", peer)
@@ -377,6 +380,7 @@ func (rf *Raft) startElection(term int) bool {
 		}
 
 		if voteNumber > len(rf.peers)/2 {
+			LOG(rf.me, rf.currentTerm, DDebug, "try to become leader", peer)
 			rf.becomeLeaderLocked()
 			go rf.replicationTicker(term)
 		}
@@ -393,7 +397,7 @@ func (rf *Raft) startElection(term int) bool {
 	for peer := 0; peer < len(rf.peers); peer++ {
 		if peer == rf.me {
 			voteNumber++
-			rf.voteFor = rf.me
+			continue
 		}
 		arg := &RequestVoteArgs{
 			Term:        term,
