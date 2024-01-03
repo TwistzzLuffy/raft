@@ -1,160 +1,240 @@
-explore go -sch000004 T0000 VOTE S0 Follower -> candidate, for T 0 to T 1
-Test (PartA): initial election ...
-000005 T0000 DBUG S0 try to become leader
-000005 T0000 VOTE S1 Follower -> candidate, for T 0 to T 1
-000006 T0000 DBUG S1 try to become leader
-000005 T0000 VOTE S2 Follower -> candidate, for T 0 to T 1
-000006 T0000 DBUG S2 try to become leader
-000909 T0001 VOTE S1 Candidate -> candidate, for T 1 to T 2
-000909 T0001 DBUG S1 try to become leader
-002014 T0001 VOTE S2 Candidate -> candidate, for T 1 to T 2
-002015 T0001 DBUG S2 try to become leader
-003130 T0001 VOTE S0 Candidate -> candidate, for T 1 to T 2
-003131 T0001 DBUG S0 try to become leader
-004061 T0002 VOTE S1 Candidate -> candidate, for T 2 to T 3
-004062 T0002 DBUG S1 try to become leader
-004370 T0002 VOTE S2 Candidate -> candidate, for T 2 to T 3
-004370 T0002 DBUG S2 try to become leader
-004684 T0003 VOTE S1 Candidate -> candidate, for T 3 to T 4
-004684 T0003 DBUG S1 try to become leader
-005823 T0002 VOTE S0 Candidate -> candidate, for T 2 to T 3
-005824 T0002 DBUG S0 try to become leader
-005856 T0003 VOTE S2 Candidate -> candidate, for T 3 to T 4
-005857 T0003 DBUG S2 try to become leader
-006579 T0004 VOTE S1 Candidate -> candidate, for T 4 to T 5
-006580 T0004 DBUG S1 try to become leader
-008348 T0003 VOTE S0 Candidate -> candidate, for T 3 to T 4
-008349 T0003 DBUG S0 try to become leader
-008419 T0004 VOTE S2 Candidate -> candidate, for T 4 to T 5
-008420 T0004 DBUG S2 try to become leader
-009029 T0005 VOTE S1 Candidate -> candidate, for T 5 to T 6
-009030 T0005 DBUG S1 try to become leader
-010496 T0006 VOTE S1 Candidate -> candidate, for T 6 to T 7
-010496 T0006 DBUG S1 try to become leader
-010546 T0004 VOTE S0 Candidate -> candidate, for T 4 to T 5
-010546 T0004 DBUG S0 try to become leader
-010889 T0005 VOTE S2 Candidate -> candidate, for T 5 to T 6
-010890 T0005 DBUG S2 try to become leader
-013852 T0006 VOTE S2 Candidate -> candidate, for T 6 to T 7
-013852 T0006 DBUG S2 try to become leader
-013918 T0005 VOTE S0 Candidate -> candidate, for T 5 to T 6
-013918 T0005 DBUG S0 try to become leader
-013985 T0007 VOTE S1 Candidate -> candidate, for T 7 to T 8
-013986 T0007 DBUG S1 try to become leader
-014820 T0006 VOTE S0 Candidate -> candidate, for T 6 to T 7
-014821 T0006 DBUG S0 try to become leader
-015753 T0007 VOTE S0 Candidate -> candidate, for T 7 to T 8
-015754 T0007 DBUG S0 try to become leader
-016806 T0007 VOTE S2 Candidate -> candidate, for T 7 to T 8
-016806 T0007 DBUG S2 try to become leader
-016916 T0008 VOTE S1 Candidate -> candidate, for T 8 to T 9
-016916 T0008 DBUG S1 try to become leader
-017079 T0008 VOTE S0 Candidate -> candidate, for T 8 to T 9
-017080 T0008 DBUG S0 try to become leader
-018079 T0009 VOTE S1 Candidate -> candidate, for T 9 to T 10
-018079 T0009 DBUG S1 try to become leader
-019442 T0008 VOTE S2 Candidate -> candidate, for T 8 to T 9
-019443 T0008 DBUG S2 try to become leader
-020055 T0009 VOTE S0 Candidate -> candidate, for T 9 to T 10
-020055 T0009 DBUG S0 try to become leader
-020803 T0010 VOTE S1 Candidate -> candidate, for T 10 to T 11
-020803 T0010 DBUG S1 try to become leader
-021364 T0009 VOTE S2 Candidate -> candidate, for T 9 to T 10
-021365 T0009 DBUG S2 try to become leader
-021790 T0010 VOTE S0 Candidate -> candidate, for T 10 to T 11
-021790 T0010 DBUG S0 try to become leader
-022241 T0010 VOTE S2 Candidate -> candidate, for T 10 to T 11
-022242 T0010 DBUG S2 try to become leader
-023350 T0011 VOTE S1 Candidate -> candidate, for T 11 to T 12
-023350 T0011 DBUG S1 try to become leader
-024264 T0011 VOTE S2 Candidate -> candidate, for T 11 to T 12
-024264 T0011 DBUG S2 try to become leader
-024477 T0011 VOTE S0 Candidate -> candidate, for T 11 to T 12
-024478 T0011 DBUG S0 try to become leader
-024707 T0012 VOTE S1 Candidate -> candidate, for T 12 to T 13
-024708 T0012 DBUG S1 try to become leader
-025693 T0012 VOTE S2 Candidate -> candidate, for T 12 to T 13
-025694 T0012 DBUG S2 try to become leader
-026850 T0013 VOTE S1 Candidate -> candidate, for T 13 to T 14
-026851 T0013 DBUG S1 try to become leader
-027270 T0012 VOTE S0 Candidate -> candidate, for T 12 to T 13
-027271 T0012 DBUG S0 try to become leader
-028257 T0013 VOTE S2 Candidate -> candidate, for T 13 to T 14
-028257 T0013 DBUG S2 try to become leader
-029384 T0013 VOTE S0 Candidate -> candidate, for T 13 to T 14
-029385 T0013 DBUG S0 try to become leader
-030012 T0014 VOTE S2 Candidate -> candidate, for T 14 to T 15
-030014 T0014 DBUG S2 try to become leader
-030036 T0014 VOTE S1 Candidate -> candidate, for T 14 to T 15
-030036 T0014 DBUG S1 try to become leader
-031648 T0014 VOTE S0 Candidate -> candidate, for T 14 to T 15
-031648 T0014 DBUG S0 try to become leader
-032210 T0015 VOTE S2 Candidate -> candidate, for T 15 to T 16
-032211 T0015 DBUG S2 try to become leader
-033374 T0016 VOTE S2 Candidate -> candidate, for T 16 to T 17
-033375 T0016 DBUG S2 try to become leader
-033508 T0015 VOTE S1 Candidate -> candidate, for T 15 to T 16
-033509 T0015 DBUG S1 try to become leader
-034085 T0017 VOTE S2 Candidate -> candidate, for T 17 to T 18
-034086 T0017 DBUG S2 try to become leader
-034091 T0015 VOTE S0 Candidate -> candidate, for T 15 to T 16
-034092 T0015 DBUG S0 try to become leader
-034530 T0016 VOTE S1 Candidate -> candidate, for T 16 to T 17
-034530 T0016 DBUG S1 try to become leader
-035847 T0017 VOTE S1 Candidate -> candidate, for T 17 to T 18
-035848 T0017 DBUG S1 try to become leader
-036375 T0018 VOTE S2 Candidate -> candidate, for T 18 to T 19
-036376 T0018 DBUG S2 try to become leader
-036500 T0018 VOTE S1 Candidate -> candidate, for T 18 to T 19
-036501 T0018 DBUG S1 try to become leader
-037112 T0019 VOTE S1 Candidate -> candidate, for T 19 to T 20
-037113 T0019 DBUG S1 try to become leader
-037523 T0016 VOTE S0 Candidate -> candidate, for T 16 to T 17
-037523 T0016 DBUG S0 try to become leader
-039319 T0019 VOTE S2 Candidate -> candidate, for T 19 to T 20
-039320 T0019 DBUG S2 try to become leader
-040517 T0020 VOTE S1 Candidate -> candidate, for T 20 to T 21
-040518 T0020 DBUG S1 try to become leader
-040823 T0017 VOTE S0 Candidate -> candidate, for T 17 to T 18
-040823 T0017 DBUG S0 try to become leader
-041354 T0018 VOTE S0 Candidate -> candidate, for T 18 to T 19
-041355 T0018 DBUG S0 try to become leader
-042325 T0020 VOTE S2 Candidate -> candidate, for T 20 to T 21
-042325 T0020 DBUG S2 try to become leader
-042780 T0019 VOTE S0 Candidate -> candidate, for T 19 to T 20
-042781 T0019 DBUG S0 try to become leader
-043523 T0021 VOTE S1 Candidate -> candidate, for T 21 to T 22
-043523 T0021 DBUG S1 try to become leader
-044143 T0020 VOTE S0 Candidate -> candidate, for T 20 to T 21
-044143 T0020 DBUG S0 try to become leader
-044449 T0022 VOTE S1 Candidate -> candidate, for T 22 to T 23
-044450 T0022 DBUG S1 try to become leader
-044505 T0021 VOTE S2 Candidate -> candidate, for T 21 to T 22
-044506 T0021 DBUG S2 try to become leader
-045166 T0021 VOTE S0 Candidate -> candidate, for T 21 to T 22
-045167 T0021 DBUG S0 try to become leader
-045745 T0022 VOTE S2 Candidate -> candidate, for T 22 to T 23
-045746 T0022 DBUG S2 try to become leader
-046782 T0023 VOTE S1 Candidate -> candidate, for T 23 to T 24
-046782 T0023 DBUG S1 try to become leader
-047339 T0024 VOTE S1 Candidate -> candidate, for T 24 to T 25
-047340 T0024 DBUG S1 try to become leader
-048470 T0022 VOTE S0 Candidate -> candidate, for T 22 to T 23
-048470 T0022 DBUG S0 try to become leader
-048502 T0023 VOTE S2 Candidate -> candidate, for T 23 to T 24
-048504 T0023 DBUG S2 try to become leader
-049354 T0025 VOTE S1 Candidate -> candidate, for T 25 to T 26
-049355 T0025 DBUG S1 try to become leader
-050076 T0024 VOTE S2 Candidate -> candidate, for T 24 to T 25
-050077 T0024 DBUG S2 try to become leader
-050539 T0023 VOTE S0 Candidate -> candidate, for T 23 to T 24
-050540 T0023 DBUG S0 try to become leader
-050749 T0025 VOTE S2 Candidate -> candidate, for T 25 to T 26
-050749 T0025 DBUG S2 try to become leader
-050837 T0026 VOTE S1 Candidate -> candidate, for T 26 to T 27
-050837 T0026 DBUG S1 try to become leader
---- FAIL: TestInitialElectionPartA (5.11s)
+explore go -schTest (PartA): election after network failure ...
+000005 T0000 VOTE S0 Follower -> candidate, for T 0 to T 1
+000006 T0000 VOTE S1 Follower -> candidate, for T 0 to T 1
+000006 T0000 VOTE S2 Follower -> candidate, for T 0 to T 1
+000009 T0001 VOTE S2 -> S0, Reject, Already voted S2
+000010 T0001 VOTE S1 -> S0, Reject, Already voted S1
+000010 T0001 VOTE S1 -> S2, Reject, Already voted S1
+000010 T0001 VOTE S0 -> S1, Reject, Already voted S0
+000010 T0001 VOTE S2 -> S1, Reject, Already voted S2
+000011 T0001 VOTE S0 -> S2, Reject, Already voted S0
+000518 T0001 VOTE S0 Candidate -> candidate, for T 1 to T 2
+000524 T0001 LOG1 S1 Candidate -> Follower, For T 1 -> 2
+000526 T0001 LOG1 S2 Candidate -> Follower, For T 1 -> 2
+001135 T0002 VOTE S0 Candidate -> candidate, for T 2 to T 3
+001138 T0002 LOG1 S1 Follower -> Follower, For T 2 -> 3
+001138 T0002 LOG1 S2 Follower -> Follower, For T 2 -> 3
+002766 T0003 VOTE S0 Candidate -> candidate, for T 3 to T 4
+002768 T0003 LOG1 S1 Follower -> Follower, For T 3 -> 4
+002768 T0003 LOG1 S2 Follower -> Follower, For T 3 -> 4
+002927 T0004 VOTE S2 Follower -> candidate, for T 4 to T 5
+002929 T0004 LOG1 S1 Follower -> Follower, For T 4 -> 5
+002929 T0004 LOG1 S0 Candidate -> Follower, For T 4 -> 5
+003032 T0005 VOTE S1 Follower -> candidate, for T 5 to T 6
+003035 T0005 LOG1 S0 Follower -> Follower, For T 5 -> 6
+003035 T0005 LOG1 S2 Candidate -> Follower, For T 5 -> 6
+004689 T0006 VOTE S0 Follower -> candidate, for T 6 to T 7
+004698 T0006 LOG1 S1 Candidate -> Follower, For T 6 -> 7
+004700 T0006 LOG1 S2 Follower -> Follower, For T 6 -> 7
+004992 T0007 VOTE S2 Follower -> candidate, for T 7 to T 8
+004995 T0007 LOG1 S1 Follower -> Follower, For T 7 -> 8
+004996 T0007 LOG1 S0 Candidate -> Follower, For T 7 -> 8
+005096 T0008 VOTE S1 Follower -> candidate, for T 8 to T 9
+005100 T0008 LOG1 S2 Candidate -> Follower, For T 8 -> 9
+005100 T0008 LOG1 S0 Follower -> Follower, For T 8 -> 9
+006935 T0009 VOTE S2 Follower -> candidate, for T 9 to T 10
+006939 T0009 LOG1 S0 Follower -> Follower, For T 9 -> 10
+006939 T0009 LOG1 S1 Candidate -> Follower, For T 9 -> 10
+007295 T0010 VOTE S1 Follower -> candidate, for T 10 to T 11
+007298 T0010 LOG1 S2 Candidate -> Follower, For T 10 -> 11
+007298 T0010 LOG1 S0 Follower -> Follower, For T 10 -> 11
+007525 T0011 VOTE S0 Follower -> candidate, for T 11 to T 12
+007529 T0011 LOG1 S1 Candidate -> Follower, For T 11 -> 12
+007529 T0011 LOG1 S2 Follower -> Follower, For T 11 -> 12
+008896 T0012 VOTE S0 Candidate -> candidate, for T 12 to T 13
+008900 T0012 LOG1 S2 Follower -> Follower, For T 12 -> 13
+008901 T0012 LOG1 S1 Follower -> Follower, For T 12 -> 13
+009918 T0013 VOTE S2 Follower -> candidate, for T 13 to T 14
+009922 T0013 LOG1 S0 Candidate -> Follower, For T 13 -> 14
+009923 T0013 LOG1 S1 Follower -> Follower, For T 13 -> 14
+009967 T0014 VOTE S1 Follower -> candidate, for T 14 to T 15
+009969 T0014 LOG1 S2 Candidate -> Follower, For T 14 -> 15
+009969 T0014 LOG1 S0 Follower -> Follower, For T 14 -> 15
+010838 T0015 VOTE S0 Follower -> candidate, for T 15 to T 16
+010841 T0015 LOG1 S2 Follower -> Follower, For T 15 -> 16
+010841 T0015 LOG1 S1 Candidate -> Follower, For T 15 -> 16
+010964 T0016 VOTE S2 Follower -> candidate, for T 16 to T 17
+010966 T0016 LOG1 S1 Follower -> Follower, For T 16 -> 17
+010966 T0016 LOG1 S0 Candidate -> Follower, For T 16 -> 17
+013150 T0017 VOTE S1 Follower -> candidate, for T 17 to T 18
+013153 T0017 LOG1 S2 Candidate -> Follower, For T 17 -> 18
+013154 T0017 LOG1 S0 Follower -> Follower, For T 17 -> 18
+013480 T0018 VOTE S0 Follower -> candidate, for T 18 to T 19
+013484 T0018 LOG1 S1 Candidate -> Follower, For T 18 -> 19
+013487 T0018 LOG1 S2 Follower -> Follower, For T 18 -> 19
+013546 T0019 VOTE S2 Follower -> candidate, for T 19 to T 20
+013551 T0019 LOG1 S0 Candidate -> Follower, For T 19 -> 20
+013551 T0019 LOG1 S1 Follower -> Follower, For T 19 -> 20
+014485 T0020 VOTE S0 Follower -> candidate, for T 20 to T 21
+014489 T0020 LOG1 S1 Follower -> Follower, For T 20 -> 21
+014489 T0020 LOG1 S2 Candidate -> Follower, For T 20 -> 21
+015386 T0021 VOTE S0 Candidate -> candidate, for T 21 to T 22
+015392 T0021 LOG1 S2 Follower -> Follower, For T 21 -> 22
+015392 T0021 LOG1 S1 Follower -> Follower, For T 21 -> 22
+016042 T0022 VOTE S0 Candidate -> candidate, for T 22 to T 23
+016052 T0022 LOG1 S1 Follower -> Follower, For T 22 -> 23
+016052 T0022 LOG1 S2 Follower -> Follower, For T 22 -> 23
+016642 T0023 VOTE S1 Follower -> candidate, for T 23 to T 24
+016649 T0023 LOG1 S2 Follower -> Follower, For T 23 -> 24
+016650 T0023 LOG1 S0 Candidate -> Follower, For T 23 -> 24
+016813 T0024 VOTE S2 Follower -> candidate, for T 24 to T 25
+016816 T0024 LOG1 S0 Follower -> Follower, For T 24 -> 25
+016817 T0024 LOG1 S1 Candidate -> Follower, For T 24 -> 25
+017852 T0025 VOTE S0 Follower -> candidate, for T 25 to T 26
+017860 T0025 LOG1 S2 Candidate -> Follower, For T 25 -> 26
+017864 T0025 LOG1 S1 Follower -> Follower, For T 25 -> 26
+018565 T0026 VOTE S0 Candidate -> candidate, for T 26 to T 27
+018571 T0026 LOG1 S2 Follower -> Follower, For T 26 -> 27
+018572 T0026 LOG1 S1 Follower -> Follower, For T 26 -> 27
+018698 T0027 VOTE S1 Follower -> candidate, for T 27 to T 28
+018705 T0027 LOG1 S2 Follower -> Follower, For T 27 -> 28
+018707 T0027 LOG1 S0 Candidate -> Follower, For T 27 -> 28
+019791 T0028 VOTE S2 Follower -> candidate, for T 28 to T 29
+019795 T0028 LOG1 S1 Candidate -> Follower, For T 28 -> 29
+019795 T0028 LOG1 S0 Follower -> Follower, For T 28 -> 29
+020770 T0029 VOTE S0 Follower -> candidate, for T 29 to T 30
+020775 T0029 LOG1 S2 Candidate -> Follower, For T 29 -> 30
+020775 T0029 LOG1 S1 Follower -> Follower, For T 29 -> 30
+021099 T0030 VOTE S1 Follower -> candidate, for T 30 to T 31
+021103 T0030 LOG1 S0 Candidate -> Follower, For T 30 -> 31
+021104 T0030 LOG1 S2 Follower -> Follower, For T 30 -> 31
+021137 T0031 VOTE S2 Follower -> candidate, for T 31 to T 32
+021140 T0031 LOG1 S1 Candidate -> Follower, For T 31 -> 32
+021141 T0031 LOG1 S0 Follower -> Follower, For T 31 -> 32
+021282 T0032 VOTE S0 Follower -> candidate, for T 32 to T 33
+021285 T0032 LOG1 S1 Follower -> Follower, For T 32 -> 33
+021285 T0032 LOG1 S2 Candidate -> Follower, For T 32 -> 33
+022198 T0033 VOTE S0 Candidate -> candidate, for T 33 to T 34
+022204 T0033 LOG1 S2 Follower -> Follower, For T 33 -> 34
+022205 T0033 LOG1 S1 Follower -> Follower, For T 33 -> 34
+022815 T0034 VOTE S2 Follower -> candidate, for T 34 to T 35
+022820 T0034 LOG1 S0 Candidate -> Follower, For T 34 -> 35
+022822 T0034 LOG1 S1 Follower -> Follower, For T 34 -> 35
+023251 T0035 VOTE S0 Follower -> candidate, for T 35 to T 36
+023253 T0035 LOG1 S1 Follower -> Follower, For T 35 -> 36
+023254 T0035 LOG1 S2 Candidate -> Follower, For T 35 -> 36
+023568 T0036 VOTE S1 Follower -> candidate, for T 36 to T 37
+023571 T0036 LOG1 S0 Candidate -> Follower, For T 36 -> 37
+023572 T0036 LOG1 S2 Follower -> Follower, For T 36 -> 37
+025119 T0037 VOTE S0 Follower -> candidate, for T 37 to T 38
+025124 T0037 LOG1 S1 Candidate -> Follower, For T 37 -> 38
+025124 T0037 LOG1 S2 Follower -> Follower, For T 37 -> 38
+025630 T0038 VOTE S2 Follower -> candidate, for T 38 to T 39
+025633 T0038 LOG1 S0 Candidate -> Follower, For T 38 -> 39
+025633 T0038 LOG1 S1 Follower -> Follower, For T 38 -> 39
+025910 T0039 VOTE S1 Follower -> candidate, for T 39 to T 40
+025914 T0039 LOG1 S0 Follower -> Follower, For T 39 -> 40
+025914 T0039 LOG1 S2 Candidate -> Follower, For T 39 -> 40
+026955 T0040 VOTE S0 Follower -> candidate, for T 40 to T 41
+026961 T0040 LOG1 S2 Follower -> Follower, For T 40 -> 41
+026961 T0040 LOG1 S1 Candidate -> Follower, For T 40 -> 41
+027754 T0041 VOTE S1 Follower -> candidate, for T 41 to T 42
+027759 T0041 LOG1 S2 Follower -> Follower, For T 41 -> 42
+027759 T0041 LOG1 S0 Candidate -> Follower, For T 41 -> 42
+028440 T0042 VOTE S2 Follower -> candidate, for T 42 to T 43
+028444 T0042 LOG1 S1 Candidate -> Follower, For T 42 -> 43
+028444 T0042 LOG1 S0 Follower -> Follower, For T 42 -> 43
+029148 T0043 VOTE S0 Follower -> candidate, for T 43 to T 44
+029154 T0043 LOG1 S2 Candidate -> Follower, For T 43 -> 44
+029154 T0043 LOG1 S1 Follower -> Follower, For T 43 -> 44
+029815 T0044 VOTE S2 Follower -> candidate, for T 44 to T 45
+029820 T0044 LOG1 S0 Candidate -> Follower, For T 44 -> 45
+029820 T0044 LOG1 S1 Follower -> Follower, For T 44 -> 45
+030277 T0045 VOTE S1 Follower -> candidate, for T 45 to T 46
+030282 T0045 LOG1 S0 Follower -> Follower, For T 45 -> 46
+030284 T0045 LOG1 S2 Candidate -> Follower, For T 45 -> 46
+030845 T0046 VOTE S1 Candidate -> candidate, for T 46 to T 47
+030852 T0046 LOG1 S2 Follower -> Follower, For T 46 -> 47
+030852 T0046 LOG1 S0 Follower -> Follower, For T 46 -> 47
+032299 T0047 VOTE S2 Follower -> candidate, for T 47 to T 48
+032301 T0047 LOG1 S1 Candidate -> Follower, For T 47 -> 48
+032303 T0047 LOG1 S0 Follower -> Follower, For T 47 -> 48
+032566 T0048 VOTE S0 Follower -> candidate, for T 48 to T 49
+032568 T0048 LOG1 S2 Candidate -> Follower, For T 48 -> 49
+032570 T0048 LOG1 S1 Follower -> Follower, For T 48 -> 49
+033897 T0049 VOTE S1 Follower -> candidate, for T 49 to T 50
+033899 T0049 LOG1 S0 Candidate -> Follower, For T 49 -> 50
+033899 T0049 LOG1 S2 Follower -> Follower, For T 49 -> 50
+034569 T0050 VOTE S2 Follower -> candidate, for T 50 to T 51
+034572 T0050 LOG1 S0 Follower -> Follower, For T 50 -> 51
+034572 T0050 LOG1 S1 Candidate -> Follower, For T 50 -> 51
+035440 T0051 VOTE S1 Follower -> candidate, for T 51 to T 52
+035444 T0051 LOG1 S0 Follower -> Follower, For T 51 -> 52
+035445 T0051 LOG1 S2 Candidate -> Follower, For T 51 -> 52
+035731 T0052 VOTE S2 Follower -> candidate, for T 52 to T 53
+035736 T0052 LOG1 S0 Follower -> Follower, For T 52 -> 53
+035737 T0052 LOG1 S1 Candidate -> Follower, For T 52 -> 53
+035917 T0053 VOTE S0 Follower -> candidate, for T 53 to T 54
+035922 T0053 LOG1 S2 Candidate -> Follower, For T 53 -> 54
+035923 T0053 LOG1 S1 Follower -> Follower, For T 53 -> 54
+036755 T0054 VOTE S2 Follower -> candidate, for T 54 to T 55
+036760 T0054 LOG1 S0 Candidate -> Follower, For T 54 -> 55
+036760 T0054 LOG1 S1 Follower -> Follower, For T 54 -> 55
+038442 T0055 VOTE S1 Follower -> candidate, for T 55 to T 56
+038449 T0055 LOG1 S2 Candidate -> Follower, For T 55 -> 56
+038450 T0055 LOG1 S0 Follower -> Follower, For T 55 -> 56
+038556 T0056 VOTE S2 Follower -> candidate, for T 56 to T 57
+038560 T0056 LOG1 S0 Follower -> Follower, For T 56 -> 57
+038561 T0056 LOG1 S1 Candidate -> Follower, For T 56 -> 57
+038997 T0057 VOTE S0 Follower -> candidate, for T 57 to T 58
+039006 T0057 LOG1 S2 Candidate -> Follower, For T 57 -> 58
+039006 T0057 LOG1 S1 Follower -> Follower, For T 57 -> 58
+040833 T0058 VOTE S1 Follower -> candidate, for T 58 to T 59
+040841 T0058 LOG1 S0 Candidate -> Follower, For T 58 -> 59
+040841 T0058 LOG1 S2 Follower -> Follower, For T 58 -> 59
+040948 T0059 VOTE S2 Follower -> candidate, for T 59 to T 60
+040952 T0059 LOG1 S1 Candidate -> Follower, For T 59 -> 60
+040952 T0059 LOG1 S0 Follower -> Follower, For T 59 -> 60
+041459 T0060 VOTE S0 Follower -> candidate, for T 60 to T 61
+041464 T0060 LOG1 S2 Candidate -> Follower, For T 60 -> 61
+041465 T0060 LOG1 S1 Follower -> Follower, For T 60 -> 61
+042081 T0061 VOTE S0 Candidate -> candidate, for T 61 to T 62
+042087 T0061 LOG1 S1 Follower -> Follower, For T 61 -> 62
+042088 T0061 LOG1 S2 Follower -> Follower, For T 61 -> 62
+042264 T0062 VOTE S2 Follower -> candidate, for T 62 to T 63
+042270 T0062 LOG1 S1 Follower -> Follower, For T 62 -> 63
+042270 T0062 LOG1 S0 Candidate -> Follower, For T 62 -> 63
+042947 T0063 VOTE S2 Candidate -> candidate, for T 63 to T 64
+042950 T0063 LOG1 S0 Follower -> Follower, For T 63 -> 64
+042950 T0063 LOG1 S1 Follower -> Follower, For T 63 -> 64
+043431 T0064 VOTE S1 Follower -> candidate, for T 64 to T 65
+043432 T0064 LOG1 S2 Candidate -> Follower, For T 64 -> 65
+043432 T0064 LOG1 S0 Follower -> Follower, For T 64 -> 65
+044045 T0065 VOTE S0 Follower -> candidate, for T 65 to T 66
+044050 T0065 LOG1 S2 Follower -> Follower, For T 65 -> 66
+044051 T0065 LOG1 S1 Candidate -> Follower, For T 65 -> 66
+044159 T0066 VOTE S1 Follower -> candidate, for T 66 to T 67
+044164 T0066 LOG1 S0 Candidate -> Follower, For T 66 -> 67
+044168 T0066 LOG1 S2 Follower -> Follower, For T 66 -> 67
+045105 T0067 VOTE S2 Follower -> candidate, for T 67 to T 68
+045112 T0067 LOG1 S1 Candidate -> Follower, For T 67 -> 68
+045113 T0067 LOG1 S0 Follower -> Follower, For T 67 -> 68
+045460 T0068 VOTE S1 Follower -> candidate, for T 68 to T 69
+045464 T0068 LOG1 S0 Follower -> Follower, For T 68 -> 69
+045465 T0068 LOG1 S2 Candidate -> Follower, For T 68 -> 69
+045758 T0069 VOTE S0 Follower -> candidate, for T 69 to T 70
+045760 T0069 LOG1 S2 Follower -> Follower, For T 69 -> 70
+045761 T0069 LOG1 S1 Candidate -> Follower, For T 69 -> 70
+046141 T0070 VOTE S2 Follower -> candidate, for T 70 to T 71
+046144 T0070 LOG1 S1 Follower -> Follower, For T 70 -> 71
+046144 T0070 LOG1 S0 Candidate -> Follower, For T 70 -> 71
+047081 T0071 VOTE S1 Follower -> candidate, for T 71 to T 72
+047084 T0071 LOG1 S2 Candidate -> Follower, For T 71 -> 72
+047085 T0071 LOG1 S0 Follower -> Follower, For T 71 -> 72
+048678 T0072 VOTE S0 Follower -> candidate, for T 72 to T 73
+048684 T0072 LOG1 S1 Candidate -> Follower, For T 72 -> 73
+048687 T0073 VOTE S1 Follower -> candidate, for T 73 to T 74
+048689 T0072 LOG1 S2 Follower -> Follower, For T 72 -> 73
+048692 T0073 LOG1 S2 Follower -> Follower, For T 73 -> 74
+048698 T0073 LOG1 S0 Candidate -> Follower, For T 73 -> 74
+049023 T0074 VOTE S2 Follower -> candidate, for T 74 to T 75
+049025 T0074 LOG1 S1 Candidate -> Follower, For T 74 -> 75
+049026 T0074 LOG1 S0 Follower -> Follower, For T 74 -> 75
+049530 T0075 VOTE S0 Follower -> candidate, for T 75 to T 76
+049535 T0075 LOG1 S2 Candidate -> Follower, For T 75 -> 76
+049536 T0075 LOG1 S1 Follower -> Follower, For T 75 -> 76
+--- FAIL: TestReElectionPartA (4.99s)
     config.go:457: expected one leader, got none
 FAIL
 exit status 1
-FAIL	course/raft	5.118s
+FAIL	course/raft	4.994s

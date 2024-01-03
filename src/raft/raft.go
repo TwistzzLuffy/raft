@@ -40,8 +40,9 @@ import (
 
 // Time
 const (
-	electionTimeoutMin time.Duration = 250 * time.Millisecond
-	electionTimeoutMax time.Duration = 400 * time.Millisecond
+	electionTimeoutMin  time.Duration = 250 * time.Millisecond
+	electionTimeoutMax  time.Duration = 400 * time.Millisecond
+	replicationInterval time.Duration = 200 * time.Millisecond
 )
 
 type ApplyMsg struct {
@@ -358,11 +359,12 @@ func (rf *Raft) startElection(term int) bool {
 		defer rf.mu.Unlock()
 		if !ok {
 			//send fault
-			LOG(rf.me, rf.currentTerm, DDebug, "Ask vote from %d, Lost or error", peer)
+			//LOG(rf.me, rf.currentTerm, DDebug, "Ask vote from %d, Lost or error", peer)
 			return
 		}
 		// handle the reply
 		//align term
+		//LOG(rf.me, rf.currentTerm, DDebug, "I am here")
 		if reply.Term > term {
 			rf.becomeFollowerLocked(reply.Term)
 			return
@@ -373,14 +375,13 @@ func (rf *Raft) startElection(term int) bool {
 			LOG(rf.me, rf.currentTerm, DVote, "Lost context, abort RequestVoteReply in T%d", rf.currentTerm)
 			return
 		}
-
+		//LOG(rf.me, rf.currentTerm, DDebug, "I am here")
 		if reply.VotGranted {
 			//success for receiving the vote
 			voteNumber++
 		}
 
 		if voteNumber > len(rf.peers)/2 {
-			LOG(rf.me, rf.currentTerm, DDebug, "try to become leader", peer)
 			rf.becomeLeaderLocked()
 			go rf.replicationTicker(term)
 		}
@@ -390,7 +391,7 @@ func (rf *Raft) startElection(term int) bool {
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
 
-	if !rf.contextCheckLocked(Candidate, term) {
+	if rf.contextCheckLocked(Candidate, term) {
 		return false
 	}
 
@@ -454,6 +455,7 @@ func (rf *Raft) replicationTicker(term int) {
 			//check the success of heartbeats
 			return
 		}
+		time.Sleep(replicationInterval)
 	}
 }
 
