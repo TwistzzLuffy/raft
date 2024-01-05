@@ -224,20 +224,18 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
 	reply.Term = rf.currentTerm
+	reply.VotGranted = false
 	if args.Term < rf.currentTerm {
 		LOG(rf.me, rf.currentTerm, DVote, "-> S%d, Reject vote, higher term, T%d>T%d",
 			args.CandidateId, rf.currentTerm, args.Term)
-		reply.VotGranted = false
 		return
 	}
 	if args.Term > rf.currentTerm {
 		rf.becomeFollowerLocked(args.Term)
-		return
 	}
 	if rf.voteFor != -1 {
 		LOG(rf.me, rf.currentTerm, DVote, "-> S%d, Reject, Already voted S%d",
 			args.CandidateId, rf.voteFor)
-		reply.VotGranted = false
 		return
 	}
 	reply.VotGranted = true
