@@ -378,6 +378,7 @@ func (rf *Raft) startElection(term int) bool {
 		//LOG(rf.me, rf.currentTerm, DDebug, "I am here")
 		if reply.VotGranted {
 			//success for receiving the vote
+			LOG(rf.me, rf.currentTerm, DDebug, "%d receive the vote", rf.me)
 			voteNumber++
 		}
 
