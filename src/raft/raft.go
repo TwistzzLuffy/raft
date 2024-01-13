@@ -86,6 +86,12 @@ type Raft struct {
 	//log view for every peer
 	nextIndex  []int
 	matchIndex []int
+
+	//commit index and last applied
+	commitIndex int //record the global apply point
+	lastApplied int // record the peer's apply point individualy
+	applyCond   *sync.Cond
+	applyCh     chan ApplyMsg
 }
 
 // to the Follower status
@@ -266,6 +272,11 @@ func Make(peers []*labrpc.ClientEnd, me int,
 
 	rf.matchIndex = make([]int, len(rf.peers))
 	rf.nextIndex = make([]int, len(rf.peers))
+	//Part b.3
+	rf.applyCh = applyCh
+	rf.applyCond = sync.NewCond(&rf.mu)
+	rf.commitIndex = 0
+	rf.lastApplied = 0
 
 	// initialize from state persisted before a crash
 	rf.readPersist(persister.ReadRaftState())

@@ -1,6 +1,9 @@
 package raft
 
-import "time"
+import (
+	"sort"
+	"time"
+)
 
 // it is according to the ApplyMsg struct
 type LogEntry struct {
@@ -16,6 +19,9 @@ type AppendEntriesArgs struct {
 	PrevLogIndex int //// PrevLogIndex and PrevLogTerm is used to match the
 	PrevLogTerm  int
 	Entries      []LogEntry // Entries is used to append when matched
+
+	//for log application
+	LeaderCommit int
 }
 type AppendEntriesReply struct {
 	Term    int
@@ -59,6 +65,13 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 		args.PrevLogIndex, args.PrevLogIndex+len(args.Entries))
 	reply.Success = true
 	//TODO: handle the args.LeaderCommit
+	if args.LeaderCommit > rf.commitIndex {
+		//说明leader可能发生变更
+		LOG(rf.me, rf.currentTerm, DApply, "Follower update the commit index %d->%d",
+			rf.commitIndex, args.LeaderCommit)
+		rf.commitIndex = args.LeaderCommit
+		rf.applyCond.Signal()
+	}
 	//reset the timer
 	rf.resetElectionTimeLocked()
 
@@ -113,6 +126,13 @@ func (rf *Raft) startReplication(term int) bool {
 		rf.matchIndex[peer] = args.PrevLogIndex + len(args.Entries)
 		rf.nextIndex[peer] = rf.matchIndex[peer] + 1
 		// TODO: need compute the new commitIndex here
+		majorityMatched := rf.getMajorityIndexLocked()
+		if majorityMatched > rf.commitIndex {
+			LOG(rf.me, rf.currentTerm, DApply, "Leader update the commit index %d->%d",
+				rf.commitIndex, majorityMatched)
+			rf.commitIndex = majorityMatched
+			rf.applyCond.Signal()
+		}
 	}
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
@@ -146,4 +166,14 @@ func (rf *Raft) startReplication(term int) bool {
 	}
 
 	return true
+}
+
+func (rf *Raft) getMajorityIndexLocked() int {
+	tmpIndex := make([]int, len(rf.matchIndex))
+	copy(tmpIndex, rf.matchIndex)
+	sort.Ints(sort.IntSlice(tmpIndex))
+	majorityIdx := (len(tmpIndex) - 1) / 2
+	LOG(rf.me, rf.currentTerm, DDebug, "Match index after sort: %v, majority[%d]=%d",
+		tmpIndex, majorityIdx, tmpIndex[majorityIdx])
+	return tmpIndex[majorityIdx]
 }
