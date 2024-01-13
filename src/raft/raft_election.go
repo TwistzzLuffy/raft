@@ -23,8 +23,9 @@ type RequestVoteArgs struct {
 	// Your data here (PartA, PartB).
 	Term        int //candidate term
 	CandidateId int //which candidate requesting vote
-	//LastLogIndex int //last index of candidate's last log entry
-	//LastLogTerm  int //term of candidate's last log entry
+	//PartB.1
+	LastLogIndex int //last index of candidate's last log entry
+	LastLogTerm  int //term of candidate's last log entry
 }
 
 // example RequestVote RPC reply structure.
@@ -45,7 +46,7 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 	reply.Term = rf.currentTerm
 	reply.VotGranted = false
 	if args.Term < rf.currentTerm {
-		LOG(rf.me, rf.currentTerm, DVote, "-> S%d, Reject vote, higher term, T%d>T%d",
+		LOG(rf.me, rf.currentTerm, DVote, "-> S%d, Reject Vote, higher term, T%d>T%d",
 			args.CandidateId, rf.currentTerm, args.Term)
 		return
 	}
@@ -53,8 +54,14 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 		rf.becomeFollowerLocked(args.Term)
 	}
 	if rf.voteFor != -1 {
-		LOG(rf.me, rf.currentTerm, DVote, "-> S%d, Reject, Already voted S%d",
+		LOG(rf.me, rf.currentTerm, DVote, "-> S%d, Reject Vote, Already voted S%d",
 			args.CandidateId, rf.voteFor)
+		return
+	}
+	//compare the log
+	if rf.isMoreUpToDataLocked(args.LastLogIndex, args.LastLogTerm) {
+		LOG(rf.me, rf.currentTerm, DVote, "-> S%d, Reject Vote, S%d's log less up-to-date",
+			args.CandidateId)
 		return
 	}
 	reply.VotGranted = true
@@ -94,6 +101,23 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 func (rf *Raft) sendRequestVote(server int, args *RequestVoteArgs, reply *RequestVoteReply) bool {
 	ok := rf.peers[server].Call("Raft.RequestVote", args, reply)
 	return ok
+}
+
+// check who log is more update
+func (rf *Raft) isMoreUpToDataLocked(candidateIndex, candidateTerm int) bool {
+	l := len(rf.log)
+	lastIndex, lastTerm := l-1, rf.log[l-1].Term
+	LOG(rf.me, rf.currentTerm, DVote, "Compare last log, Me: [%d]T%d, Candidate: [%d]T%d",
+		lastIndex, lastTerm, candidateIndex, candidateTerm)
+	//1. If the logs have last entries with different terms,
+	//then the log with the later term is more up-to-date.
+	//2. If the logs end with the same term,
+	//then whichever log is longer is more up-to-da
+	if lastTerm != candidateTerm {
+		return lastTerm > candidateTerm
+	}
+	return lastIndex > candidateIndex
+
 }
 
 //check if time is out and start election
@@ -172,14 +196,17 @@ func (rf *Raft) startElection(term int) bool {
 		return false
 	}
 
+	l := len(rf.log)
 	for peer := 0; peer < len(rf.peers); peer++ {
 		if peer == rf.me {
 			voteNumber++
 			continue
 		}
 		arg := &RequestVoteArgs{
-			Term:        term,
-			CandidateId: rf.me,
+			Term:         term,
+			CandidateId:  rf.me,
+			LastLogIndex: l - 1,
+			LastLogTerm:  rf.log[l-1].Term,
 		}
 		go askVoteFromPeer(peer, arg)
 	}
