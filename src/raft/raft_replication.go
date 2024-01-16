@@ -109,6 +109,10 @@ func (rf *Raft) startReplication(term int) bool {
 			rf.becomeFollowerLocked(reply.Term)
 			return
 		}
+		//check context lost
+		if rf.contextCheckLocked(Leader, term) {
+			LOG(rf.me, rf.currentTerm, DLog, "-> S%d, Context Lost, T%d:Leader->T%d:%s", peer, term, rf.currentTerm, rf.role)
+		}
 		//probe the lower index if the pre log not matched
 		if !reply.Success {
 			idx := rf.nextIndex[peer] - 1
@@ -118,8 +122,8 @@ func (rf *Raft) startReplication(term int) bool {
 				idx--
 			}
 			rf.nextIndex[peer] = idx + 1
-			LOG(rf.me, rf.currentTerm, DLog, "Log not matched in %d, Update next=%d",
-				args.PrevLogIndex, rf.nextIndex[peer])
+			LOG(rf.me, rf.currentTerm, DLog, "->S%d, Not matched in %d, Update next=%d",
+				peer, args.PrevLogIndex, rf.nextIndex[peer])
 			return
 		}
 		//update the match/next index if log append successfully
