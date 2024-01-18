@@ -3,9 +3,10 @@ package raft
 func (rf *Raft) applyTicker() {
 	for !rf.killed() {
 		rf.mu.Lock()
+		rf.applyCond.Wait()
 		//wait() will release the rf's lock, liking spaining lock
 		LOG(rf.me, rf.currentTerm, DDebug, "Sending msg to application")
-		rf.applyCond.Wait()
+
 		//condition is satisfied and going to apply
 		entries := make([]LogEntry, 0)
 		for i := rf.lastApplied + 1; i <= rf.commitIndex; i++ {

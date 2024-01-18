@@ -87,7 +87,7 @@ func (rf *Raft) replicationTicker(term int) {
 		ok := rf.startReplication(term)
 		if !ok {
 			//check the success of heartbeats
-			return
+			break
 		}
 		time.Sleep(replicationInterval)
 	}
@@ -145,8 +145,6 @@ func (rf *Raft) startReplication(term int) bool {
 		//current term is ending, and this round of heartbeat is fault
 		return false
 	}
-	//add var to debug PartB
-	countfunc := 0
 
 	for peer := 0; peer < len(rf.peers); peer++ {
 		if peer == rf.me {
@@ -167,8 +165,8 @@ func (rf *Raft) startReplication(term int) bool {
 			PrevLogTerm:  prevTerm,
 			Entries:      rf.log[prevIdx+1:],
 		}
-		countfunc++
-		LOG(rf.me, rf.currentTerm, DDebug, "-> Server: %d, Count time: %d", peer, countfunc)
+		//countfunc++
+		//LOG(rf.me, rf.currentTerm, DDebug, "-> Server: %d, Count time: %d", peer, countfunc)
 		go replicationToPeer(peer, args)
 	}
 

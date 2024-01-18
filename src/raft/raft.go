@@ -288,6 +288,7 @@ func Make(peers []*labrpc.ClientEnd, me int,
 	rf.readPersist(persister.ReadRaftState())
 	// start ticker goroutine to start elections
 	go rf.electionTicker()
+	go rf.applyTicker()
 
 	return rf
 }
