@@ -68,7 +68,7 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 	rf.voteFor = args.CandidateId
 	//reset the selectiontime
 	rf.resetElectionTimeLocked()
-	LOG(rf.me, rf.currentTerm, DVote, "-> S%d", args.CandidateId)
+	LOG(rf.me, rf.currentTerm, DVote, "-> S%d,  Vote granted", args.CandidateId)
 }
 
 // example code to send a RequestVote RPC to a server.

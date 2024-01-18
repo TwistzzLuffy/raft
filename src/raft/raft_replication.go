@@ -54,7 +54,7 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 			args.LeaderId, len(rf.log), args.PrevLogIndex)
 		return
 	}
-	if rf.log[args.PrevLogTerm].Term != args.PrevLogTerm {
+	if rf.log[args.PrevLogIndex].Term != args.PrevLogTerm {
 		LOG(rf.me, rf.currentTerm, DLog2, "<- S%d, Reject Log, Prev log not match, [%d]: T%d != T%d",
 			args.LeaderId, args.PrevLogIndex, rf.log[args.PrevLogIndex].Term, args.PrevLogTerm)
 		return
@@ -145,6 +145,8 @@ func (rf *Raft) startReplication(term int) bool {
 		//current term is ending, and this round of heartbeat is fault
 		return false
 	}
+	//add var to debug PartB
+	countfunc := 0
 
 	for peer := 0; peer < len(rf.peers); peer++ {
 		if peer == rf.me {
@@ -165,7 +167,8 @@ func (rf *Raft) startReplication(term int) bool {
 			PrevLogTerm:  prevTerm,
 			Entries:      rf.log[prevIdx+1:],
 		}
-
+		countfunc++
+		LOG(rf.me, rf.currentTerm, DDebug, "-> Server: %d, Count time: %d", peer, countfunc)
 		go replicationToPeer(peer, args)
 	}
 
