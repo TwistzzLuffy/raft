@@ -40,7 +40,7 @@ import (
 const (
 	electionTimeoutMin  time.Duration = 250 * time.Millisecond
 	electionTimeoutMax  time.Duration = 400 * time.Millisecond
-	replicationInterval time.Duration = 200 * time.Millisecond
+	replicationInterval time.Duration = 70 * time.Millisecond
 )
 
 type ApplyMsg struct {

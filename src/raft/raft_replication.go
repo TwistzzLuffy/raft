@@ -115,8 +115,9 @@ func (rf *Raft) startReplication(term int) bool {
 		}
 		//probe the lower index if the pre log not matched
 		if !reply.Success {
-			idx := rf.nextIndex[peer] - 1
-			term := rf.log[idx].Term
+			//idx := rf.nextIndex[peer] - 1
+			//term := rf.log[idx].Term
+			idx, term := args.PrevLogIndex, args.PrevLogTerm
 			for idx > 0 && rf.log[idx].Term == term {
 				//Here's an optimisation, send the AppendRPC for each term, instead of each entry
 				idx--
@@ -159,11 +160,12 @@ func (rf *Raft) startReplication(term int) bool {
 		prevTerm := rf.log[prevIdx].Term
 
 		args := &AppendEntriesArgs{
-			Term:         term,
+			Term:         rf.currentTerm,
 			LeaderId:     rf.me,
 			PrevLogIndex: prevIdx,
 			PrevLogTerm:  prevTerm,
 			Entries:      rf.log[prevIdx+1:],
+			LeaderCommit: rf.commitIndex,
 		}
 		//countfunc++
 		//LOG(rf.me, rf.currentTerm, DDebug, "-> Server: %d, Count time: %d", peer, countfunc)
